@@ -10,9 +10,11 @@
 
     # Install packages if required
     if(!require('flowCore')) {install.packages('flowCore')}
+    if(!require('Biobase')) {install.packages('Biobase')}
 
     # Load packages
     library('flowCore')
+    library('Biobase')
 
     # Set working directory
     getwd()
@@ -24,7 +26,7 @@
     FileNames
 
     # Chose which .csv file to read into 'data' -- rename 'sample_data.csv' to whatever file you want to read
-    data <- read.csv("sample_data.csv")
+    data <- read.csv("sample_data.csv", row.names = 0) # if the first column contains names for each row, then change "row.names = 0" to "row.names = 1" 
     data
 
     # Give a name for your output .fcs file (don't foret to add '.fcs' at the end of the name)
