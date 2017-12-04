@@ -26,7 +26,7 @@
     FileNames
 
     # Chose which .csv file to read into 'data' -- rename 'sample_data.csv' to whatever file you want to read
-    data <- read.csv("sample_data.csv", row.names = NULL) # if the first column contains names for each row, then change "row.names = 0" to "row.names = 1" 
+    data <- read.csv("sample_data.csv", row.names = NULL) # if the first column contains names for each row, then change "row.names = NULL" to "row.names = 1" 
     data
 
     # Give a name for your output .fcs file (don't foret to add '.fcs' at the end of the name)
