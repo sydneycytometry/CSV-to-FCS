@@ -9,8 +9,12 @@
 ##### USER INPUT #####
     
     # Install packages if required
-    if(!require('flowCore')) {install.packages('flowCore')}
-    if(!require('Biobase')) {install.packages('Biobase')}
+    # BiocManager is used to provide compatibility for flowCore for R version 3.6 and above.
+    if (!requireNamespace("BiocManager", quietly = TRUE))
+      install.packages("BiocManager")
+    BiocManager::install("flowCore")
+    BiocManager::install("Biobase")
+    
     if(!require('data.table')) {install.packages('data.table')}
     
     # Load packages
@@ -31,8 +35,8 @@
     #PrimaryDirectory <- getwd()                                     # Assign the working directory as 'PrimaryDirectory'
     #PrimaryDirectory
     
-    ## Use to list the .csv files in the working directory -- important, the only CSV files in the directory should be the one desired for analysis. If more than one are found, only the first file will be used
-    FileNames <- list.files(path=PrimaryDirectory, pattern = ".fcs")     # see a list of CSV files
+    ## Use to list the .fcs files in the working directory -- important, the only FCS files in the directory should be the one desired for analysis. If more than one are found, only the first file will be used
+    FileNames <- list.files(path=PrimaryDirectory, pattern = ".fcs")     # see a list of FCS files
     as.matrix(FileNames) # See file names in a list
     
     ## Read data from Files into list of data frames
