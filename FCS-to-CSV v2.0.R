@@ -36,7 +36,7 @@
     #PrimaryDirectory
     
     ## Use to list the .fcs files in the working directory -- important, the only FCS files in the directory should be the one desired for analysis. If more than one are found, only the first file will be used
-    FileNames <- list.files(path=PrimaryDirectory, pattern = ".fcs")     # see a list of FCS files
+    FileNames <- list.files(path=PrimaryDirectory, pattern = "\\.fcs$")     # see a list of FCS files
     as.matrix(FileNames) # See file names in a list
     
     ## Read data from Files into list of data frames
