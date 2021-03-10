@@ -9,9 +9,24 @@
 ##### USER INPUT #####
 
     # Install packages if required
-    if(!require('flowCore')) {install.packages('flowCore')}
-    if(!require('Biobase')) {install.packages('Biobase')}
+    rver = R.version
+    if (rver$major < 3 || (rver$major == 3 && rver.minor <= 5)){
+      # keep backwards compatibility for older R versions
+      if(!require('flowCore')) {install.packages('flowCore')}
+      if(!require('Biobase')) {install.packages('Biobase')}
+    } else {
+      # using BiocManager for future compatibility with R
+      if(!requireNamespace("BiocManager", quietly = TRUE))
+      {
+        # there's usually no need to install from source, install remote packages instead
+        install.packages("BiocManager", quiet = TRUE)
+        # the update argument suppresses BiocManager's automated update dialog prompt
+        if(!require('flowCore')) {BiocManager::install("flowCore", update = FALSE)}
+        if(!require('Biobase')) {BiocManager::install("Biobase", update = FALSE)}
+      }
+    }
     if(!require('data.table')) {install.packages('data.table')}
+    if(!require('rstudioapi')) {install.packages('rstudioapi')}
 
     # Load packages
     library('flowCore')
